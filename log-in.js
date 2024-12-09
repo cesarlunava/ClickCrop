@@ -1,3 +1,5 @@
+const connection = require("./conexion");
+
 const login = async (req, res) => {
     const datos = req.query
 

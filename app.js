@@ -8,6 +8,9 @@ const session = require('express-session')
 const md5 = require('md5');
 const bcrypt = require('bycrypt');
 const login = require('./log-in');
+const registro = require('./registro');
+const { obtenerUsuarios, eliminarUsuarios } = require('./usuarios');
+const validar = require('./validar');
 const saltRounds = 10;
 
 app.use(cors({
@@ -18,15 +21,20 @@ app.use(session({
     secret: 'ashuby23tv4h32v4uwd78vus87sd8dfhjkig98'
 }))
 
-const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'login',
-});
-
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
 app.get('/log-in', login)
+
+app.get('/validar', validar)
     
+app.get('/registro', registro)
+
+app.get('/usuarios', obtenerUsuarios)
+
+app.delete('/usuarios', eliminarUsuarios)
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
