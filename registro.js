@@ -1,4 +1,6 @@
 const connection = require("./conexion");
+const saltRounds = 10;
+const bcrypt = require('bycrypt');
 
 const registro = async (req, res) => {
     if (!req.session.usuario) {
